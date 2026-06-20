@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Our Doctor | Sai Dental Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="icon.ico" sizes="32x32" type="image/x-icon"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    a { color: inherit; text-decoration: none; }
+
+    html, body {
+      background: linear-gradient(135deg, #fdfbf6, #fffdf2, #fffdf8, #f8f3e8);
+      min-height: 100vh;
+      font-family: 'Lato', Arial, Helvetica, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      color: #2a2017;
+      overflow-x: hidden;
+    }
+
+    .page { min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 3rem;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: linear-gradient(to bottom, rgba(253,251,246,0.95) 70%, rgba(253,251,246,0));
+      backdrop-filter: blur(4px);
+    }
+    .topbar-logo {
+      font-family: 'Playfair Display', serif; font-size: 1.2rem;
+      font-weight: 500; color: #2a2017; letter-spacing: -0.02em;
+    }
+    .topbar-back {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.9rem; font-weight: 500; color: #2a2017;
+      opacity: 0.7; transition: opacity 0.2s; cursor: pointer;
+    }
+    .topbar-back:hover { opacity: 1; }
+    .topbar-back svg { width: 16px; height: 16px; }
+
+    /* ── HERO ── */
+    .hero { padding-top: 120px; padding-bottom: 0; display: flex; flex-direction: column; align-items: center; }
+
+    .eyebrow {
+      font-family: 'Lato', sans-serif; font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; color: #c9a648;
+      margin-bottom: 1.5rem; opacity: 0;
+      animation: fadeUp 0.8s cubic-bezier(.16,1,.3,1) 0.2s forwards;
+    }
+    .doctor-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 6rem); font-weight: 400;
+      color: #2a2017; text-align: center; line-height: 1.05;
+      opacity: 0; animation: fadeUp 1s cubic-bezier(.16,1,.3,1) 0.4s forwards;
+    }
+    .doctor-name em { font-style: italic; color: #c9a648; font-weight: 300; }
+
+    /* ── CARD ── */
+    .card-wrapper {
+      width: 100%; max-width: 1100px; margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+      display: grid; grid-template-columns: 1fr 1.4fr;
+      gap: 5rem; align-items: start;
+    }
+
+    /* ── PORTRAIT SIDE ── */
+    .portrait-col {
+      display: flex; flex-direction: column; align-items: flex-start; gap: 2rem;
+      opacity: 0; animation: fadeUp 1s cubic-bezier(.16,1,.3,1) 0.7s forwards;
+    }
+    .portrait-frame {
+      width: 100%; aspect-ratio: 3/4;
+      background: linear-gradient(145deg, #f0e9d6, #e8dcc5);
+      border-radius: 4px 60px 4px 4px; position: relative; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(42,32,23,0.12), 0 4px 16px rgba(42,32,23,0.08);
+    }
+    .portrait-placeholder {
+      width: 100%; height: 100%; display: flex;
+      flex-direction: column; align-items: center; justify-content: flex-end; position: relative;
+    }
+    .portrait-placeholder::before {
+      content: ''; position: absolute; bottom: -10%; left: 50%; transform: translateX(-50%);
+      width: 75%; height: 75%;
+      background: radial-gradient(ellipse, rgba(201,166,72,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .portrait-silhouette { width: 65%; position: relative; z-index: 1; }
+    .upload-hint {
+      position: absolute; top: 1.2rem; left: 50%; transform: translateX(-50%);
+      background: rgba(42,32,23,0.08); backdrop-filter: blur(8px);
+      border: 1px solid rgba(201,166,72,0.35); border-radius: 50px;
+      padding: 0.4rem 1rem; font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.06em; color: #2a2017; white-space: nowrap; z-index: 5;
+    }
+    .accent-bar { width: 60px; height: 3px; background: #c9a648; border-radius: 2px; }
+    .portrait-tagline {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 1.1rem; font-weight: 400; color: #2a2017; opacity: 0.65; line-height: 1.5;
+    }
+
+    /* ── INFO SIDE ── */
+    .info-col {
+      padding-top: 1rem; display: flex; flex-direction: column; gap: 3rem;
+      opacity: 0; animation: fadeUp 1s cubic-bezier(.16,1,.3,1) 0.9s forwards;
+    }
+    .qual-strip { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .qual-badge {
+      background: rgba(201,166,72,0.12); border: 1px solid rgba(201,166,72,0.4);
+      color: #2a2017; border-radius: 50px; padding: 0.45rem 1.1rem;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; font-family: 'Lato', sans-serif;
+    }
+    .section-label {
+      font-family: 'Lato', sans-serif; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: #c9a648; margin-bottom: 0.8rem;
+    }
+    .specialty-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 600; color: #2a2017; line-height: 1.2;
+    }
+    .specialty-title em { color: #c9a648; font-style: italic; font-weight: 400; }
+    .specialty-desc {
+      margin-top: 1rem; font-size: 0.97rem; font-weight: 300; line-height: 1.8;
+      color: #2a2017; opacity: 0.75; max-width: 480px;
+    }
+    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .stat-card {
+      background: rgba(255,253,248,0.7); border: 1px solid rgba(201,166,72,0.2);
+      border-radius: 12px; padding: 1.4rem 1rem; text-align: center;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .stat-card:hover { border-color: rgba(201,166,72,0.5); box-shadow: 0 4px 20px rgba(201,166,72,0.12); }
+    .stat-num {
+      font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 600;
+      color: #c9a648; display: block; line-height: 1; margin-bottom: 0.4rem;
+    }
+    .stat-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #2a2017; opacity: 0.6; }
+    .expertise-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .expertise-list li {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.93rem; font-weight: 400; color: #2a2017; opacity: 0.8;
+    }
+    .expertise-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #c9a648; flex-shrink: 0; }
+    .cta-row { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: #2a2017; color: #fffdf8; border: none; border-radius: 50px;
+      padding: 0.9rem 2.2rem; font-family: 'Lato', sans-serif; font-size: 0.9rem;
+      font-weight: 500; cursor: pointer; transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+    }
+    .btn-primary:hover { background: #3a2e1d; box-shadow: 0 6px 20px rgba(42,32,23,0.28); transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent; color: #2a2017; border: 1.5px solid rgba(42,32,23,0.25);
+      border-radius: 50px; padding: 0.9rem 2.2rem; font-family: 'Lato', sans-serif;
+      font-size: 0.9rem; font-weight: 400; cursor: pointer; transition: border-color 0.3s, color 0.3s;
+    }
+    .btn-ghost:hover { border-color: #c9a648; color: #c9a648; }
+
+    /* ── FOOTER STRIP ── */
+    .footer-strip {
+      width: 100%; overflow: hidden; padding: 2rem 3rem;
+      border-top: 1px solid rgba(42,32,23,0.07);
+      display: flex; align-items: center; justify-content: space-between; position: relative;
+    }
+    .footer-clinic { font-family: 'Playfair Display', serif; font-size: 0.9rem; color: #2a2017; opacity: 0.45; }
+    .footer-bg-text {
+      font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 8rem);
+      font-weight: 400; color: #2a2017; opacity: 0.04; white-space: nowrap;
+      pointer-events: none; user-select: none; position: absolute; bottom: 0;
+      left: 50%; transform: translateX(-50%); line-height: 1;
+    }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 768px) {
+      .topbar { padding: 1.2rem 1.5rem; }
+      .card-wrapper { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 1.5rem 5rem; }
+      .portrait-frame { max-width: 320px; }
+      .portrait-col { align-items: center; }
+      .stats-row { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+      .footer-strip { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .doctor-name { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <nav class="topbar">
+    <a href="index.html" class="topbar-logo">Sai Dental Studio</a>
+    <a class="topbar-back" href="index.html">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3L5 8l5 5"/></svg>
+      Back to Home
+    </a>
+  </nav>
+
+  <section class="hero">
+    <p class="eyebrow">Meet Our Doctor</p>
+    <h1 class="doctor-name">Dr. A. <em>Mahaprasad</em></h1>
+  </section>
+
+  <main class="card-wrapper">
+    <div class="portrait-col">
+      <div class="portrait-frame">
+        <img src="images/dr.jpg" alt="Dr. A. Mahaprasad" style="width:100%;height:100%;object-fit:cover;display:block"/>
+      </div>
+      <div class="accent-bar"></div>
+      <p class="portrait-tagline">"Excellence in every<br>root, every smile."</p>
+    </div>
+
+    <div class="info-col">
+      <div>
+        <p class="section-label">Qualifications</p>
+        <div class="qual-strip">
+          <span class="qual-badge">BDS (Utkal)</span>
+          <span class="qual-badge">MDS</span>
+          <span class="qual-badge">Root Canal Specialist</span>
+        </div>
+      </div>
+      <div>
+        <p class="section-label">Specialisation</p>
+        <h2 class="specialty-title">Root Canal<br><em>Treatment &amp; Endodontics</em></h2>
+        <p class="specialty-desc">With advanced training in endodontics, Dr. Mahaprasad brings precision and care to every procedure — ensuring pain-free treatment and long-lasting dental health for each patient at Sai Dental Studio.</p>
+      </div>
+      <div>
+        <p class="section-label">At a Glance</p>
+        <div class="stats-row">
+          <div class="stat-card"><span class="stat-num">15+</span><span class="stat-label">Years of Practice</span></div>
+          <div class="stat-card"><span class="stat-num">500+</span><span class="stat-label">Procedures Done</span></div>
+          <div class="stat-card"><span class="stat-num">100%</span><span class="stat-label">Patient Focus</span></div>
+        </div>
+      </div>
+      <div>
+        <p class="section-label">Areas of Expertise</p>
+        <ul class="expertise-list">
+          <li>Root Canal Treatment (RCT)</li>
+          <li>Re-treatment of Failed Root Canals</li>
+          <li>Dental Prosthetics &amp; Crowns</li>
+          <li>Comprehensive Dental Diagnosis</li>
+          <li>Tooth Restoration &amp; Fillings</li>
+          <li>Dental Implant Consultation</li>
+        </ul>
+      </div>
+      <div class="cta-row">
+        <button class="btn-primary" onclick="window.location.href='index.html#contact'">Book Appointment</button>
+        <button class="btn-ghost" onclick="window.location.href='tel:+917437899999'">Call Clinic</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-strip">
+    <span class="footer-clinic">Sai Dental Studio · Patrapada, Bhubaneswar</span>
+    <span class="footer-clinic">Mon – Sun &nbsp;|&nbsp; 9:30 AM – 9:00 PM</span>
+    <span class="footer-bg-text">Dr. Mahaprasad</span>
+  </footer>
+
+</div>
+</body>
+</html>
