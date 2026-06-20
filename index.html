@@ -7,8 +7,7 @@
   <meta name="description" content="Sai Dental Studio offers expert dental care including implants, comprehensive diagnosis, prosthetics and more in Patrapada, Bhubaneswar, Odisha. Book a consultation today."/>
   <meta name="keywords" content="dental clinic Bhubaneswar, dentist Patrapada, dental implants Odisha, Sai Dental Studio"/>
   <meta name="robots" content="index, follow"/>
-  <link rel="icon" type="image/x-icon" href="/icon.ico?v=5">
-  
+  <link rel="canonical" href="https://saidentalstudio.com/"/>
 
   <!-- Open Graph -->
   <meta property="og:title" content="Sai Dental Studio | Expert Dental Care in Bhubaneswar"/>
@@ -446,15 +445,13 @@
     .certDot{background-color:#fdf8ee;border:6px solid #c9a648;border-radius:50%;width:24px;height:24px;position:absolute;top:-12px;left:50%;transform:translate(-50%);box-shadow:0 0 0 1px #d4af37}
     .certDot1 .certDot,.certDot2 .certDot,.certDot3 .certDot,.certDot4 .certDot{animation:20s linear infinite certKeepUpright}
     .certDot2 .certDot{animation-delay:-5s}.certDot3 .certDot{animation-delay:-10s}.certDot4 .certDot{animation-delay:-15s}
-    .certDotLabel{white-space:nowrap;color:#2e2419;font-size:11px;font-weight:600;line-height:1.2;position:absolute;top:-12px;left:calc(50% + 22px);transform:translateY(-50%);background:#fdf8eecc;padding:2px 6px;border-radius:4px}
-    .certDot1 .certDotLabel,.certDot2 .certDotLabel,.certDot3 .certDotLabel,.certDot4 .certDotLabel{animation:20s linear infinite certKeepUprightLabel}
-    .certDot2 .certDotLabel{animation-delay:-5s}.certDot3 .certDotLabel{animation-delay:-10s}.certDot4 .certDotLabel{animation-delay:-15s}
+    .certDotLabel{white-space:nowrap;color:#2e2419;font-size:11px;font-weight:600;line-height:1.2;position:absolute;top:50%;left:30px;transform:translateY(-50%);background:#fdf8eecc;padding:2px 6px;border-radius:4px;z-index:5}
     @keyframes certRotate{0%{transform:translate(-50%,-50%)rotate(25deg)rotateX(75deg)rotate(0)}to{transform:translate(-50%,-50%)rotate(25deg)rotateX(75deg)rotate(-360deg)}}
     @keyframes certKeepUpright{0%{transform:translate(-50%)rotate(0)rotateX(-75deg)rotate(-25deg)}to{transform:translate(-50%)rotate(360deg)rotateX(-75deg)rotate(-25deg)}}
     @keyframes certKeepUprightLabel{0%{transform:translateY(-50%)rotate(0)rotateX(-75deg)rotate(-25deg)}to{transform:translateY(-50%)rotate(360deg)rotateX(-75deg)rotate(-25deg)}}
     .certRightTitle{text-align:right;z-index:2;flex:1;align-self:flex-end}
     .certTitle{font-family:'Playfair Display',serif;margin:0;font-size:8rem;line-height:1;transform:scaleY(1.1)}
-    .certTitleLine{display:block;overflow:hidden}
+    .certTitleLine{display:block;overflow:hidden;padding-bottom:.12em}
     .certTitleLine>span{opacity:0;transition:transform 1.6s cubic-bezier(.16,1,.3,1),opacity 1.2s;display:inline-block;transform:translateY(110%)}
     .certVisible .certTitleLine>span{opacity:1;transition-delay:0s;transform:translateY(0)}
     .certLight{color:#2a2017;font-weight:300}
@@ -878,9 +875,9 @@
       .urTitle{text-align:left;margin-bottom:2rem;font-size:3rem}
       .urDescription{max-width:100%}
       .urCommitment{text-align:left;margin-top:1.5rem;margin-left:0}
-      .certSection{padding:20px 0 30px;overflow:hidden}
-      .certContainer{display:flex;flex-direction:column;align-items:flex-start;min-height:auto;padding:0;position:relative;overflow:hidden}
-      .certTitle{font-size:clamp(2.8rem,13vw,5rem);line-height:.9}
+      .certSection{padding:20px 0 30px;overflow:visible}
+      .certContainer{display:flex;flex-direction:column;align-items:flex-start;min-height:auto;padding:0;position:relative;overflow:visible}
+      .certTitle{font-size:clamp(2.8rem,13vw,5rem);line-height:1.15}
       .certLeftTitle{order:1;position:relative;width:65%;text-align:left;padding:0 0 0 20px;z-index:10;flex:none}
       .certCenterImage{order:2;position:relative!important;width:100%!important;height:320px!important;margin:0!important;display:block!important;transform:none!important;top:auto!important;left:auto!important}
       .certRightTitle{order:3;position:relative;width:100%;text-align:right;padding:0 20px 0 0;z-index:10;flex:none}
@@ -960,7 +957,7 @@
 
 /* ===== CERT SECTION MOBILE — assembled implant with orbit ===== */
 @media (max-width:768px){
-  .certSection{padding:20px 0 30px!important;overflow:hidden!important;}
+  .certSection{padding:20px 0 30px!important;overflow:visible!important;}
 
   .certContainer{
     display:flex!important;
@@ -969,7 +966,7 @@
     min-height:auto!important;
     padding:0!important;
     position:relative!important;
-    overflow:hidden!important;
+    overflow:visible!important;
   }
 
   .certLeftTitle{
@@ -1009,7 +1006,7 @@
     flex:none!important;
   }
 
-  .certTitle{font-size:clamp(2.8rem,13vw,5rem)!important;line-height:.9!important;}
+  .certTitle{font-size:clamp(2.8rem,13vw,5rem)!important;line-height:1.15!important;}
 
   /* Orbit rings — 320px, centered in certCenterImage */
   .certOrbitBackContainer{
@@ -1599,10 +1596,10 @@
       </div>
       <div class="certOrbitFrontContainer"><div class="certOrbitFront"></div></div>
       <div class="certOrbitContainer">
-        <div class="certDot1"><div class="certDot"></div><div class="certDotLabel">Quality<br/>Certified</div></div>
-        <div class="certDot2"><div class="certDot"></div><div class="certDotLabel">Official<br/>Warranty</div></div>
-        <div class="certDot3"><div class="certDot"></div><div class="certDotLabel">Trusted<br/>Brand</div></div>
-        <div class="certDot4"><div class="certDot"></div><div class="certDotLabel">Premium<br/>Service</div></div>
+        <div class="certDot1"><div class="certDot"><div class="certDotLabel">Quality<br/>Certified</div></div></div>
+        <div class="certDot2"><div class="certDot"><div class="certDotLabel">Official<br/>Warranty</div></div></div>
+        <div class="certDot3"><div class="certDot"><div class="certDotLabel">Trusted<br/>Brand</div></div></div>
+        <div class="certDot4"><div class="certDot"><div class="certDotLabel">Premium<br/>Service</div></div></div>
       </div>
     </div>
     <div class="certRightTitle">
